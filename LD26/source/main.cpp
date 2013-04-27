@@ -27,7 +27,7 @@ int main()
 
 	// Player
 	sf::Texture playerTexture;
-	playerTexture.loadFromFile("assets/pplayer.png");
+	playerTexture.loadFromFile("assets/lanternguy.png");
 	Player player(playerTexture);
 	player.setSpeed(10.0f * map.tileWidth());
 	player.setPosition(100, 100);
