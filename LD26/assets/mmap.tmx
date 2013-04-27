@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="shet" tilewidth="32" tileheight="32">
+  <image source="shet.png" width="128" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztljkOwCAMBEnI9f8Xp0mBECjm9C5yMRJytWNshHfOeQLuH7Tz9XAIPZ4A7dylDgweUjdGjxG90M7T6z4ZXdg9Zr/dx8deUav1GeUQ5pPW0Bh9H7NJ5ZPWkED3kO4Zoof0j7RHlNQQHBg8cj7xbLQwezdypHpdctbOv6oH81y1OiB7XBHmweVxArCKRw82wzCyvLJSEdw=
+  </data>
+ </layer>
+ <objectgroup name="Hitboxes" width="50" height="30">
+  <object type="solid" x="1" y="801" width="1599" height="50"/>
+ </objectgroup>
+</map>

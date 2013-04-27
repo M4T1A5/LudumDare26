@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="52" height="52" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="world_tilesheet" tilewidth="32" tileheight="32">
+  <image source="world_tilesheet.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="17" name="hitbox" tilewidth="32" tileheight="32">
+  <image source="hitbox.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Floor" width="52" height="52">
+  <data encoding="base64" compression="zlib">
+   eJztzwEJADAQxLCff9OzEY4WIqB3e70R/dj6sfVj68fWj60fWz+2fmz92Pqx9WPrx9aPrR9bP7Z+bP3Y+rH1Y+vH1o+tH1s/tn5sqz9LfZZaCcU=
+  </data>
+ </layer>
+ <layer name="Spawnpoints" width="52" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt18ENACAIA0Dj/kO7hGDVu8R3KS8cA9hlnh7gA3YMAHeYxa9bZaY+2Zn6ZGfqk52pT3amPtmZp/q8dL8BAABAl6R/b9IswB0WZHoAlQ==
+  </data>
+ </layer>
+ <layer name="GameObjects" width="52" height="52">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAADwZCpAAAE=
+  </data>
+ </layer>
+ <layer name="Hitboxes" width="52" height="52" visible="0" opacity="0.65">
+  <data encoding="base64" compression="zlib">
+   eJztzwEJADAQxLC3MP9mZyMcDVRA3929sVb0Y+vH1o+tH1s/tn5s/dj6sfVj68fWj60fWz+2fmz92Pqx9WPrx9aPrR9bP7Z+bP3Y+rGt/iz1AYOaDY0=
+  </data>
+ </layer>
+ <objectgroup name="Spawns" width="52" height="52">
+  <object name="PlayerSpawn" x="472" y="505" width="713" height="378"/>
+  <object x="1324" y="174"/>
+  <object x="135" y="139"/>
+  <object x="235" y="1494"/>
+  <object x="1363" y="1485"/>
+ </objectgroup>
+</map>
