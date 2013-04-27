@@ -13,10 +13,10 @@ void Player::update(sf::Time dt)
 {
 	handleInput();
 
-	move(_velocity * dt.asSeconds()); // Function of the sprite class
-
 	_velocity.y += 0.5f;
-	_velocity.x += -_velocity.x*dt.asSeconds()*15;
+	//_velocity.x += -_velocity.x*dt.asSeconds()*15;
+
+	move(_velocity * dt.asSeconds()); // Function of the sprite class
 
 	Collision::handleWorldCollision(*this);
 }
@@ -35,10 +35,10 @@ void Player::handleInput()
 	{
 		_velocity.x = _speed;
 	}
-	//else
-	//{
-	//	_velocity.x = 0;
-	//}
+	else
+	{
+		_velocity.x = 0;
+	}
 
 	// Jumping
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Collision::onGround(*this))

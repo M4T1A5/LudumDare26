@@ -29,7 +29,7 @@ int main()
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("assets/pplayer.png");
 	Player player(playerTexture);
-	player.setSpeed(5.0f * map.tileWidth());
+	player.setSpeed(10.0f * map.tileWidth());
 	player.setPosition(100, 100);
 
 	// Main game loop
