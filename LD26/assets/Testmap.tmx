@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Clearsheet" tilewidth="64" tileheight="64">
+  <image source="clearsheet.png" width="384" height="192"/>
+ </tileset>
+ <layer name="Background" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzjZ2Bg4B/Fo3gUD0kMAH9mDhE=
+  </data>
+ </layer>
+ <layer name="Ground" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzdklkKwDAIBU03u9//uLHQwquoFfLXBwMJ6BiSMBHtwKH2HlYdCxO9c1IuVt1m+FryF18RukbfDOtB6JO+643HGzzDmui3fI9T/53IV4z5X74lcDGAzsjnBet1n/bhXXpol6YCuAcDAw==
+  </data>
+ </layer>
+ <objectgroup name="Hitboxes" width="20" height="12">
+  <object type="solid" x="0" y="0" width="1277" height="60"/>
+  <object type="solid" x="0" y="-1" width="60" height="452"/>
+  <object type="solid" x="-1" y="449" width="256" height="316"/>
+  <object type="solid" x="256" y="707" width="516" height="60"/>
+  <object type="solid" x="771" y="577" width="315" height="191"/>
+  <object type="solid" x="835" y="512" width="187" height="65"/>
+  <object type="solid" x="1087" y="643" width="65" height="125"/>
+  <object type="solid" x="1152" y="704" width="128" height="63"/>
+  <object type="solid" x="1217" y="61" width="60" height="643"/>
+  <object type="solid" x="580" y="321" width="120" height="121"/>
+  <object type="solid" x="387" y="385" width="57" height="251"/>
+ </objectgroup>
+</map>

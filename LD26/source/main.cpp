@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <TmxLoader.h>
 #include <iostream>
 #include <cmath>
+#include <TmxLoader.h>
+#include "Player.h"
+#include "Collision.h"
 
 int main()
 {
@@ -20,16 +22,17 @@ int main()
 
 	// Load the map
 	tmx::TileMap map;
-	map.LoadFromFile("mmap.tmx", "assets/");
+	map.LoadFromFile("Testmap.tmx", "assets/");
+	Collision::setWorldHitboxes(map.GetSolidObjects());
 
-	// Sprite test
+	// Player
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("assets/pplayer.png");
-	sf::Sprite player(playerTexture);
-	player.setPosition(100, 500);
+	Player player(playerTexture);
+	player.setSpeed(5.0f * map.tileWidth());
+	player.setPosition(100, 100);
 
-	std::vector<sf::IntRect> hitboxes = map.GetSolidObjects();
-
+	// Main game loop
     while (window.isOpen())
     {
 		// Window event handling
@@ -40,45 +43,9 @@ int main()
                 window.close();
         }
 
-		// Player movement hacks
-		static float speed = 1.0f;
-		sf::Vector2f velocity;
-		static sf::Vector2f jump;
-		static float deacceleration = 0.01f;
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && jump.y == 0)
-		{
-			jump.y = 2.0f;
-			deacceleration = 0.01f;
-		}
+		player.update(dt);
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-			velocity.x -= ceil(speed * dt.asSeconds());
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-			velocity.x += ceil(speed * dt.asSeconds());
-
-		velocity.y -= jump.y;
-		jump.y -= deacceleration;
-
-		player.move(velocity.x, velocity.y);
-
-		for(size_t i = 0; i < hitboxes.size(); i++)
-		{
-			sf::IntRect hitbox = hitboxes[i];
-
-			sf::IntRect playerRect(player.getPosition().x, player.getPosition().y,
-				player.getTextureRect().width, player.getTextureRect().height);
-
-			if(playerRect.intersects(hitbox))
-			{
-				player.setPosition(player.getPosition().x, hitbox.top - player.getTextureRect().height);
-				jump.y = 0;
-				deacceleration = 0;
-			}
-		}
-
-		std::cout << "X: " << player.getPosition().x << " Y: " << player.getPosition().y << std::endl;
-
-		view.setCenter(player.getPosition().x, 500 + floor(player.getPosition().y/2.5f));
+		view.setCenter(player.getPosition().x, player.getPosition().y);
 		// End of camera movement hacks
 
 		// Clear the window and set the view("Camera") settings

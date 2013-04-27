@@ -98,10 +98,16 @@ xcopy $(SolutionDir)SFML-2.0\bin\sfml-graphics-2.dll $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Character.cpp" />
+    <ClCompile Include="source\Collision.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\TmxLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\Collision.h" />
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\TmxLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
