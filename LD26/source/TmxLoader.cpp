@@ -703,7 +703,7 @@ void TileMap::m_SetTile(std::map<int, std::vector<sf::IntRect> >& subRectsMap, L
 		if(rit->first >= 0 && rit->first <= GID) // If the firstGID is less than or equal to tileGID then we have the correct tileset
 		{
 			int subRectToUse = GID - rit->first; //Work out the subrect ID to 'chop up' the tilesheet image.
-			if (subRectToUse >= 0) //we only need to (and only can) create a sprite/tile if there is one to display
+			if (subRectToUse >= 0 && subRectToUse <= rit->second.size()) //we only need to (and only can) create a sprite/tile if there is one to display
 			{
 				sf::Sprite sprite(m_tilesets[rit->first], rit->second[subRectToUse]); //create sprite from texture and subrect
 				sprite.setPosition((float)(x * m_tileWidth), (float)(y * m_tileHeight));
