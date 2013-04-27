@@ -18,6 +18,11 @@ private:
 	Player(const Player& player);
 
 	void handleInput();
+
+	void initAnimations();
+
+	void updateAnimation();
+
 };
 
 #endif

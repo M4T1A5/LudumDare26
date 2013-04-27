@@ -37,7 +37,7 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/NonCopyable.hpp>
-#include <string>
+#include <SFML/System/String.hpp>
 
 
 namespace sf
@@ -62,7 +62,7 @@ public :
     /// \brief Default constructor
     ///
     /// This constructor doesn't actually create the window,
-    /// use the other constructors or call create to do so.
+    /// use the other constructors or call "create" to do so.
     ///
     ////////////////////////////////////////////////////////////
     Window();
@@ -86,7 +86,7 @@ public :
     /// \param settings Additional settings for the underlying OpenGL context
     ///
     ////////////////////////////////////////////////////////////
-    Window(VideoMode mode, const std::string& title, Uint32 style = Style::Default, const ContextSettings& settings = ContextSettings());
+    Window(VideoMode mode, const String& title, Uint32 style = Style::Default, const ContextSettings& settings = ContextSettings());
 
     ////////////////////////////////////////////////////////////
     /// \brief Construct the window from an existing control
@@ -125,7 +125,7 @@ public :
     /// \param settings Additional settings for the underlying OpenGL context
     ///
     ////////////////////////////////////////////////////////////
-    void create(VideoMode mode, const std::string& title, Uint32 style = Style::Default, const ContextSettings& settings = ContextSettings());
+    void create(VideoMode mode, const String& title, Uint32 style = Style::Default, const ContextSettings& settings = ContextSettings());
 
     ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window from an existing control
@@ -178,11 +178,11 @@ public :
     const ContextSettings& getSettings() const;
 
     ////////////////////////////////////////////////////////////
-    /// \brief Pop the event on top of events stack, if any, and return it
+    /// \brief Pop the event on top of the event queue, if any, and return it
     ///
     /// This function is not blocking: if there's no pending event then
     /// it will return false and leave \a event unmodified.
-    /// Note that more than one event may be present in the events stack,
+    /// Note that more than one event may be present in the event queue,
     /// thus you should always call this function in a loop
     /// to make sure that you process every pending event.
     /// \code
@@ -195,7 +195,7 @@ public :
     ///
     /// \param event Event to be returned
     ///
-    /// \return True if an event was returned, or false if the events stack was empty
+    /// \return True if an event was returned, or false if the event queue was empty
     ///
     /// \see waitEvent
     ///
@@ -284,7 +284,7 @@ public :
     /// \see setIcon
     ///
     ////////////////////////////////////////////////////////////
-    void setTitle(const std::string& title);
+    void setTitle(const String& title);
 
     ////////////////////////////////////////////////////////////
     /// \brief Change the window's icon

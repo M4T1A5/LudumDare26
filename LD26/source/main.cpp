@@ -10,6 +10,7 @@ int main()
 {
 	// Create the window
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
+	//window.setVerticalSyncEnabled(true);
 
 	// Create a new view("Camera")
 	sf::View view = window.getView();
