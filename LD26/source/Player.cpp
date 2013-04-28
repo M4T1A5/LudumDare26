@@ -5,6 +5,7 @@ Player::Player(const sf::Texture& texture)
 	: Character(texture)
 {
 	initAnimations();
+
 }
 
 Player::~Player() { }
@@ -22,10 +23,10 @@ void Player::update(sf::Time dt)
 
 	move(_velocity * dt.asSeconds()); // Function of the sprite class
 
-	Collision::handleWorldCollision(*this);
-
 	animator.update(dt);
 	animator.animate(*this);
+
+	Collision::handleWorldCollision(*this);
 }
 
 
@@ -57,21 +58,28 @@ void Player::handleInput()
 void Player::initAnimations()
 {
 	thor::FrameAnimation idle;
-	addFrames(idle, 0, 0, 0, 112, 128);
-	addAnimation(idle, "idle", sf::seconds(1.0f));
+	addFrames(idle, 0, 1, 0, 56, 64);
+	addFrames(idle, 0, 1, 1, 56, 64);
+	addAnimation(idle, "idle", sf::seconds(2.0f));
 
 	thor::FrameAnimation walkRight;
-	addFrames(walkRight, 0, 5, 0, 112, 128);
+	addFrames(walkRight, 0, 5, 0, 56, 64);
 	addAnimation(walkRight, "walkRight", sf::seconds(0.5f));
+
+	thor::FrameAnimation walkLeft;
+	addFrames(walkLeft, 0, 5, 1, 56, 64);
+	addAnimation(walkLeft, "walkLeft", sf::seconds(0.5f));
 
 	animator.playAnimation("idle");
 }
 
 void Player::updateAnimation()
 {
-	if(!animator.isPlayingAnimation() || _velocity.x == 0)
+	if(!animator.isPlayingAnimation())
 		animator.playAnimation("idle");
-	else if(_velocity.x != 0 && animator.getPlayingAnimation() != "walkRight")
+	else if(_velocity.x > 0 && animator.getPlayingAnimation() != "walkRight")
 		animator.playAnimation("walkRight");
+	else if(_velocity.x < 0 && animator.getPlayingAnimation() != "walkLeft")
+		animator.playAnimation("walkLeft");
 	
 }

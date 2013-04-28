@@ -23,15 +23,18 @@ int main()
 
 	// Load the map
 	tmx::TileMap map;
-	map.LoadFromFile("Testmap.tmx", "assets/");
+	map.LoadFromFile("map2.tmx", "assets/");
 	Collision::setWorldHitboxes(map.GetSolidObjects());
 
 	// Player
 	sf::Texture playerTexture;
-	playerTexture.loadFromFile("assets/lanternguy.png");
+	playerTexture.loadFromFile("assets/lanternguy2.png");
 	Player player(playerTexture);
 	player.setSpeed(10.0f * map.tileWidth());
 	player.setPosition(100, 100);
+
+	// Text input
+	std::string input;
 
 	// Main game loop
     while (window.isOpen())
@@ -40,14 +43,25 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
+			if(event.type == sf::Event::TextEntered)
+			{
+				if(event.text.unicode < 128) // Handle asii chars only
+				{
+					input += static_cast<char>(event.text.unicode);
+				}
+				if(event.key.code == sf::Keyboard::Space)
+				{
+					input = "";
+				}
+			}
+
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
+		// Player update
 		player.update(dt);
-
 		view.setCenter(player.getPosition().x, player.getPosition().y);
-		// End of camera movement hacks
 
 		// Clear the window and set the view("Camera") settings
         window.clear();
@@ -57,7 +71,7 @@ int main()
 
 		// Calculate the rectangle of the view so we can limit the map drawing correctly (probably not the best way but it works)
 		viewRectangle = sf::FloatRect(view.getCenter().x - view.getSize().x / 2.0f, view.getCenter().y - view.getSize().y / 2.0f,
-			view.getSize().x, view.getSize().y);
+			view.getSize().x + map.tileWidth() * 3, view.getSize().y + map.tileHeight() * 3);
 		map.SetDrawingBounds(viewRectangle); // Acutally set the rectangle
 		map.Draw(window); // Now draw the since we know how
 
@@ -66,6 +80,16 @@ int main()
 		// Add non-map elements below this (e.g. sprites, text, etc..)
 		window.draw(player);
 		
+		if(input == "potato")
+		{
+			sf::Texture t;
+			t.loadFromFile("assets/potato.jpg");
+			sf::Sprite potato(t);
+			potato.setPosition(player.getPosition().x - potato.getTextureRect().width/2,
+				player.getPosition().y - potato.getTextureRect().height/2);
+			window.draw(potato);
+		}
+
 		// End of draw
 
 		// Display everything

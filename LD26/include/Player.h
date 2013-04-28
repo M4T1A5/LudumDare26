@@ -5,6 +5,7 @@
 #include <SFML/System/Clock.hpp>
 #include "Character.h"
 #include "Collision.h"
+#include <Thor/Particles.hpp>
 
 class Player : public Character
 {
@@ -15,6 +16,8 @@ public:
 	void update(sf::Time dt);
 
 private:
+	thor::UniversalEmitter particleEmmitter;
+
 	Player(const Player& player);
 
 	void handleInput();

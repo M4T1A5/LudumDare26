@@ -23,6 +23,7 @@ Added support for multiple tilesets
 Added some utility functions
 Optimized drawing a bit
 Corrected function order in cpp file
+Support tile flipping (also makes possible to load maps with flipped tiles)
 
 
 SFML Tiled Map Loader - https://github.com/bjorn/tiled/wiki/TMX-Map-Format
@@ -695,6 +696,18 @@ sf::Color TileMap::m_ColourFromHex(const char* hexStr)
 
 void TileMap::m_SetTile(std::map<int, std::vector<sf::IntRect> >& subRectsMap, Layer& layer, int x, int y, int GID)
 {
+	const unsigned FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+	const unsigned FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+	const unsigned FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
+
+	bool flipped_horizontally = GID & FLIPPED_HORIZONTALLY_FLAG;
+	bool flipped_vertically = GID & FLIPPED_VERTICALLY_FLAG;
+	bool flipped_diagonally = GID & FLIPPED_DIAGONALLY_FLAG;
+
+	GID &= ~(FLIPPED_HORIZONTALLY_FLAG |
+				FLIPPED_VERTICALLY_FLAG |
+				FLIPPED_DIAGONALLY_FLAG);
+
 	for(auto rit = subRectsMap.crbegin(); rit != subRectsMap.crend(); ++rit) // Go from last to first so we find the right tileset(reverse iteration)
 	{
 		//rit->first = firstGID of tileset
@@ -707,6 +720,36 @@ void TileMap::m_SetTile(std::map<int, std::vector<sf::IntRect> >& subRectsMap, L
 			{
 				sf::Sprite sprite(m_tilesets[rit->first], rit->second[subRectToUse]); //create sprite from texture and subrect
 				sprite.setPosition((float)(x * m_tileWidth), (float)(y * m_tileHeight));
+
+				// Flipping (simplified)
+				if(flipped_horizontally)
+				{
+					if(flipped_diagonally)
+					{
+						sprite.rotate(90);
+						sprite.move(sprite.getTextureRect().width, 0);
+					}
+					else if(flipped_vertically)
+					{
+						sprite.rotate(180);
+						sprite.move(sprite.getTextureRect().width, sprite.getTextureRect().height);
+					}
+					else
+					{
+						sprite.setRotation(90);
+						sprite.move(sprite.getTextureRect().width, 0);
+					}
+				}
+				else if(flipped_vertically)
+				{
+					if(flipped_diagonally)
+						sprite.rotate(-90);
+					else
+						sprite.rotate(-90);
+
+					sprite.move(0, sprite.getTextureRect().height);
+				}
+
 				sprite.setColor(sf::Color(255, 255, 255, layer.opacity));//Set opacity of the tile.
 
 				//add tile to layer

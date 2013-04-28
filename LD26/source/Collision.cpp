@@ -24,7 +24,7 @@ void Collision::handleWorldCollision(Character& character)
 		sf::IntRect hitRect;
 		if(characterRect.intersects(hitbox, hitRect))
 		{
-			// The constants 1 and 0.5 are needed to stop the vibration effect
+			// The constants are needed to stop the vibration effect
 
 			// Top or Bottom collision
 			if(hitRect.width > hitRect.height)
@@ -38,7 +38,7 @@ void Collision::handleWorldCollision(Character& character)
 				// Character top hits hitbox bottom
 				else
 				{
-					character.setPosition(character.getPosition().x, character.getPosition().y - hitRect.height + 1);
+					character.setPosition(character.getPosition().x, character.getPosition().y - hitRect.height + 0.7f);
 					character.setVelocity(character.getVelocity().x, 0.0f);
 				}
 			}
@@ -67,7 +67,7 @@ bool Collision::onGround(Character& character)
 	{
 		sf::IntRect hitbox = _worldHitboxes[i];
 		sf::IntRect characterRect(character.getPosition().x, character.getPosition().y,
-			character.getTextureRect().width, character.getTextureRect().height);
+			character.getTextureRect().width, character.getTextureRect().height + 1);
 
 		sf::IntRect hitRect;
 		if(characterRect.intersects(hitbox, hitRect))

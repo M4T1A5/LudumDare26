@@ -10,7 +10,7 @@
  </layer>
  <layer name="Ground" width="60" height="22">
   <data encoding="base64" compression="zlib">
-   eJzFWAmOwjAMNMdSoJX2izyNp1KLWrIGH80FI1lF28T1+IqzExEtq0zbs1Ym42nJAr8tHS02ZHKhN27Uhjs8Z4PnSb070SdabTjTfr6tiPgitzuNA/p5NF+JkXzX0t8axwg1fA+r/CVyhD0YM/mulbcjwTkd1TLyPah3US/CfRiz2VjzTXi1rG26Ej2smhMuujYzLr/my5BY67ihTbzGy8FRfKV+Vv1PrBMGx4Hfrc+nXm+t7WUTA3tRVN97e6HUj/iY/Z3xiHrhnn3it73APPHO+6hXSYwWw+7svNI9uCTGvWtM94iMq16D/M7k5zaD7RYfl/R/Ky9La8LSGfkQuTK8eApvFI8j1rllW+/5I+IrXEvztxe8WSSbLSJIbUsssIdZ9Tpy3rqpvPDuKSiSPzXngDVHj+SX2VKSvxK7rBdpf9SeHbXYavhh1fCIGUh0/m/SY45GHzKkN0X9ybOtBXi3wFj2+EavuHh6roU68G6hYxnNpxnElzWzhQWP70x5X9K2aB09e5F1frRw1vNGaY/RtpTmGtZANEdZ52UWB+u9vufiuRudxdaa7O6Q7fX2R/+nyHR7f38BGH8dWw==
+   eJzFWAduwzAMZOq0jmMD/aKflqfGRE2AuHJYqz2AUGAtnjhEZSai7ZD5bGtlNlpLNvhtrdGiQyZf9IOF2vCEdjV4Tqpvot9o1eFO1/m2IuKL3J40DnjOo/mKjWRfa/1WO0ao4Xs75DORD5iDNpN9Lb8dCfbpKJaR7031RbkI56HNVmPMX8KLZa3Tor5P8J2hYzPj8t98GWJrbTfUicd4PjiKr8TPsf4L44TxINq572hferw1tpdODMxFUXxfzYUSP3LGfN4ZjygXXpl37LmXzEM/8e77KFeJjTZD7+y+0jm4xMa9Y0zniIyrHoP87uT7NoP1ljMuyf+WX5bGhLVmdIbIleHZU3ijeBwxzi3detcfEV/hWuq/veDVIlltEUFiW2yBOcyK15H11qL8wnunoIj/1NwDVh09kl+mS4n/iu2yXKTPo/buqMUZw7sVwyNqIFnz+5QedTSeIUNyU5SfPN1agG8LtGWPPXrZxVvnUbgGvi20LaP6NIOcZU1tYcHju1Kel7Qu+OboBev+aOGs643SHKN1KfU1jIGojrLuy8wOVr9+5+K9G93F1pjs7ZDN9eZH/1Nka3vf3y0YHLU=
   </data>
  </layer>
  <objectgroup name="Hitboxes" width="60" height="22">
@@ -32,9 +32,9 @@
   <object type="solid" x="898" y="1216" width="250" height="188"/>
   <object type="solid" x="1026" y="1090" width="380" height="126"/>
   <object type="solid" x="1282" y="1186" width="60" height="92"/>
-  <object type="solid" x="1282" y="962" width="122" height="122"/>
-  <object x="1154" y="60" width="60" height="324"/>
-  <object x="1284" y="52" width="58" height="202"/>
+  <object type="solid" x="1282" y="962" width="125" height="129"/>
+  <object type="solid" x="1154" y="60" width="60" height="324"/>
+  <object type="solid" x="1284" y="52" width="58" height="202"/>
   <object type="solid" x="1408" y="60" width="126" height="580"/>
   <object type="solid" x="1528" y="60" width="258" height="68"/>
   <object type="solid" x="1532" y="122" width="130" height="66"/>
@@ -42,7 +42,7 @@
   <object type="solid" x="1856" y="60" width="60" height="196"/>
   <object type="solid" x="1900" y="48" width="80" height="82"/>
   <object type="solid" x="2238" y="66" width="68" height="66"/>
-  <object type="solid" x="832" y="256" width="128" height="384"/>
+  <object type="solid" x="835" y="376" width="124" height="262"/>
   <object type="solid" x="960" y="510" width="508" height="132"/>
   <object type="solid" x="1216" y="636" width="256" height="68"/>
   <object type="solid" x="1730" y="770" width="188" height="122"/>
@@ -67,7 +67,7 @@
   <object type="solid" x="2624" y="450" width="190" height="62"/>
   <object type="solid" x="192" y="384" width="258" height="64"/>
   <object type="solid" x="258" y="320" width="66" height="66"/>
-  <object type="solid" x="320" y="258" width="516" height="122"/>
+  <object type="solid" x="320" y="258" width="639" height="124"/>
   <object type="solid" x="578" y="382" width="62" height="66"/>
   <object type="solid" x="706" y="384" width="62" height="188"/>
   <object type="solid" x="260" y="446" width="124" height="68"/>

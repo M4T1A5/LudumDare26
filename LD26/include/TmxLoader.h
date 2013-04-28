@@ -23,6 +23,7 @@ Added support for multiple tilesets
 Added some utility functions
 Optimized drawing a bit
 Corrected function order in cpp file
+Support tile flipping (also makes possible to load maps with flipped tiles)
 
 
 SFML Tiled Map Loader - https://github.com/bjorn/tiled/wiki/TMX-Map-Format
