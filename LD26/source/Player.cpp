@@ -3,7 +3,7 @@
 
 Player::Player(const sf::Texture& texture)
 	: Character(texture),
-	  _jumpForce(-640)
+	  _jumpForce(-700)
 {
 	initAnimations();
 }
