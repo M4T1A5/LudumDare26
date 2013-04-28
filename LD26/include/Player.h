@@ -16,6 +16,8 @@ public:
 	void update(sf::Time dt);
 
 private:
+	float _jumpForce;
+
 	void handleInput();
 
 	void initAnimations();

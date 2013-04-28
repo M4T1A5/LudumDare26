@@ -2,7 +2,8 @@
 
 
 Player::Player(const sf::Texture& texture)
-	: Character(texture)
+	: Character(texture),
+	  _jumpForce(-640)
 {
 	initAnimations();
 }
@@ -17,7 +18,7 @@ void Player::update(sf::Time dt)
 	handleInput();
 	updateAnimation();
 
-	_velocity.y += 0.5f;
+	_velocity.y += 1.6f;
 	//_velocity.x += -_velocity.x*dt.asSeconds()*15;
 
 	move(_velocity * dt.asSeconds()); // Function of the sprite class
@@ -50,7 +51,7 @@ void Player::handleInput()
 	// Jumping
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Collision::onGround(*this))
 	{
-		_velocity.y = -_speed;
+		_velocity.y = _jumpForce;
 	}
 }
 

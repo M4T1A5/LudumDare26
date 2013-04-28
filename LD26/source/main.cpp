@@ -26,8 +26,17 @@ struct PlayerPosition
 	Player& player;
 };
 
+enum GameState
+{
+	TitleScreen,
+	EndScreen,
+	Running
+};
+
 int main()
 {
+	GameState gameState = GameState::TitleScreen;
+
 	// Create the window
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 	//window.setVerticalSyncEnabled(true);
@@ -41,6 +50,12 @@ int main()
 	sf::Clock clock;
 	sf::Time dt;
 
+	// Title and endscreen
+	sf::Texture titleTexture, endTexture;
+	titleTexture.loadFromFile("assets/menu.png");
+	endTexture.loadFromFile("assets/uded.png");
+	sf::Sprite titlescreen(titleTexture), endscreen(endTexture);
+
 	// Load the map
 	tmx::TileMap map;
 	map.LoadFromFile("map2.tmx", "assets/");
@@ -50,8 +65,13 @@ int main()
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("assets/lanternguy2.png");
 	Player player(playerTexture);
-	player.setSpeed(10.0f * map.tileWidth());
+	player.setSpeed(5.0f * map.tileWidth());
 	player.setPosition(100, 100);
+
+	// Darkness
+	sf::Texture darknessTexture;
+	darknessTexture.loadFromFile("assets/valo.png");
+	sf::Sprite darkness(darknessTexture);
 
 	// Text input
 	std::string input;
@@ -83,7 +103,7 @@ int main()
 	system.addAffector( thor::AnimationAffector::create(fader) );
 	system.addAffector( thor::TorqueAffector::create(100.f) );
 	system.addAffector( thor::ForceAffector::create(sf::Vector2f(0.f, 10.f)) );
-	system.addAffector( thor::ScaleAffector::create(sf::Vector2f(5.0f, 5.0f)) );
+	system.addAffector( thor::ScaleAffector::create(sf::Vector2f(2.0f, 2.0f)) );
 
 	// Attributes that influence emitter
 	thor::PolarVector2f velocity(200.f, -90.f);
@@ -111,43 +131,65 @@ int main()
                 window.close();
         }
 
-		emitter->setParticleVelocity(thor::Distributions::deflect(velocity, 15.0f));
-
-		system.update(dt);
-		
-		// Player update
-		player.update(dt);
-		view.setCenter(player.getPosition().x, player.getPosition().y);
-
-		// Clear the window and set the view("Camera") settings
-        window.clear();
-		window.setView(view);
-
-		// Map needs to be drawn first
-
-		// Calculate the rectangle of the view so we can limit the map drawing correctly (probably not the best way but it works)
-		viewRectangle = sf::FloatRect(view.getCenter().x - view.getSize().x / 2.0f, view.getCenter().y - view.getSize().y / 2.0f,
-			view.getSize().x + map.tileWidth() * 3, view.getSize().y + map.tileHeight() * 3);
-		map.SetDrawingBounds(viewRectangle); // Acutally set the rectangle
-		map.Draw(window); // Now draw the since we know how
-
-		// End of map drawing
-
-		// Add non-map elements below this (e.g. sprites, text, etc..)
-		window.draw(player);
-		window.draw(system);
-		
-		if(input == "potato")
+		switch(gameState)
 		{
-			sf::Texture t;
-			t.loadFromFile("assets/potato.jpg");
-			sf::Sprite potato(t);
-			potato.setPosition(player.getPosition().x - potato.getTextureRect().width/2,
-				player.getPosition().y - potato.getTextureRect().height/2);
-			window.draw(potato);
-		}
+		case GameState::TitleScreen:
+			window.draw(titlescreen);
 
-		// End of draw
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+				gameState = GameState::Running;
+
+			break;
+		case GameState::EndScreen:
+			window.draw(endscreen);
+
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+				exit(0);
+
+			break;
+		case GameState::Running:
+			emitter->setParticleVelocity(thor::Distributions::deflect(velocity, 15.0f));
+
+			system.update(dt);
+		
+			// Player update
+			player.update(dt);
+			view.setCenter(player.getPosition().x, player.getPosition().y);
+			darkness.setPosition(player.getPosition() - 
+				sf::Vector2f(darkness.getTextureRect().width / 2, darkness.getTextureRect().height / 2)
+				+ sf::Vector2f(player.getTextureRect().width / 2, player.getTextureRect().height / 2));
+
+			// Clear the window and set the view("Camera") settings
+			window.clear();
+			window.setView(view);
+
+			// Map needs to be drawn first
+
+			// Calculate the rectangle of the view so we can limit the map drawing correctly (probably not the best way but it works)
+			viewRectangle = sf::FloatRect(view.getCenter().x - view.getSize().x / 2.0f, view.getCenter().y - view.getSize().y / 2.0f,
+				view.getSize().x + map.tileWidth() * 3, view.getSize().y + map.tileHeight() * 3);
+			map.SetDrawingBounds(viewRectangle); // Acutally set the rectangle
+			map.Draw(window); // Now draw the since we know how
+
+			// End of map drawing
+
+			// Add non-map elements below this (e.g. sprites, text, etc..)
+			window.draw(player);
+			window.draw(system);
+			window.draw(darkness);
+		
+			if(input == "potato")
+			{
+				sf::Texture t;
+				t.loadFromFile("assets/potato.jpg");
+				sf::Sprite potato(t);
+				potato.setPosition(player.getPosition().x - potato.getTextureRect().width/2,
+					player.getPosition().y - potato.getTextureRect().height/2);
+				window.draw(potato);
+			}
+			// End of draw
+			break;
+		}
 
 		// Display everything
         window.display();
