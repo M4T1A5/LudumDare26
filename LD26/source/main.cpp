@@ -6,6 +6,26 @@
 #include "Player.h"
 #include "Collision.h"
 
+#include <Thor/Particles.hpp>
+#include <Thor/Vectors/PolarVector.hpp>
+#include <Thor/Math.hpp>
+
+// Functor that returns the mouse position in float coordinates
+struct PlayerPosition
+{
+	PlayerPosition(Player& player)
+	: player(player)
+	{
+	}
+
+	sf::Vector2f operator() ()
+	{
+		return player.getPosition() + sf::Vector2f(player.getTextureRect().width / 2, player.getTextureRect().height / 8);
+	}
+
+	Player& player;
+};
+
 int main()
 {
 	// Create the window
@@ -36,6 +56,38 @@ int main()
 	// Text input
 	std::string input;
 
+	// Particle test
+	thor::UniversalEmitter::Ptr emitter = thor::UniversalEmitter::create();
+	emitter->setEmissionRate(30.f);
+	emitter->setParticleLifetime(sf::seconds(1.f));
+	emitter->setParticlePosition(PlayerPosition(player));
+	
+	sf::Texture t;
+	t.loadFromFile("assets/particle.png");
+	thor::ParticleSystem system(t);
+	system.addEmitter(emitter);
+
+	// Build color gradient (green -> teal -> blue)
+	thor::ColorGradient gradient = thor::createGradient
+	(sf::Color(255, 255, 255)) (1) 
+	(sf::Color(242, 255, 48)) (1)
+	(sf::Color(183, 8, 8)) (1)
+	(sf::Color(0,0,0));
+
+	// Create color and fade in/out animations
+	thor::ColorAnimation colorizer(gradient);
+	thor::FadeAnimation fader(0.2f, 0.2f);
+
+	// Add particle affectors
+	system.addAffector( thor::AnimationAffector::create(colorizer) );
+	system.addAffector( thor::AnimationAffector::create(fader) );
+	system.addAffector( thor::TorqueAffector::create(100.f) );
+	system.addAffector( thor::ForceAffector::create(sf::Vector2f(0.f, 10.f)) );
+	system.addAffector( thor::ScaleAffector::create(sf::Vector2f(5.0f, 5.0f)) );
+
+	// Attributes that influence emitter
+	thor::PolarVector2f velocity(200.f, -90.f);
+
 	// Main game loop
     while (window.isOpen())
     {
@@ -59,6 +111,10 @@ int main()
                 window.close();
         }
 
+		emitter->setParticleVelocity(thor::Distributions::deflect(velocity, 15.0f));
+
+		system.update(dt);
+		
 		// Player update
 		player.update(dt);
 		view.setCenter(player.getPosition().x, player.getPosition().y);
@@ -79,6 +135,7 @@ int main()
 
 		// Add non-map elements below this (e.g. sprites, text, etc..)
 		window.draw(player);
+		window.draw(system);
 		
 		if(input == "potato")
 		{

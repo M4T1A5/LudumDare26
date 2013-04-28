@@ -5,7 +5,6 @@ Player::Player(const sf::Texture& texture)
 	: Character(texture)
 {
 	initAnimations();
-
 }
 
 Player::~Player() { }

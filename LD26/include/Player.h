@@ -16,10 +16,6 @@ public:
 	void update(sf::Time dt);
 
 private:
-	thor::UniversalEmitter particleEmmitter;
-
-	Player(const Player& player);
-
 	void handleInput();
 
 	void initAnimations();
