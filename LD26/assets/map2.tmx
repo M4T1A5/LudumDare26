@@ -10,7 +10,7 @@
  </layer>
  <layer name="Ground" width="60" height="22">
   <data encoding="base64" compression="zlib">
-   eJzFWAduwzAMZOq0jmMD/aKflqfGRE2AuHJYqz2AUGAtnjhEZSai7ZD5bGtlNlpLNvhtrdGiQyZf9IOF2vCEdjV4Tqpvot9o1eFO1/m2IuKL3J40DnjOo/mKjWRfa/1WO0ao4Xs75DORD5iDNpN9Lb8dCfbpKJaR7031RbkI56HNVmPMX8KLZa3Tor5P8J2hYzPj8t98GWJrbTfUicd4PjiKr8TPsf4L44TxINq572hferw1tpdODMxFUXxfzYUSP3LGfN4ZjygXXpl37LmXzEM/8e77KFeJjTZD7+y+0jm4xMa9Y0zniIyrHoP87uT7NoP1ljMuyf+WX5bGhLVmdIbIleHZU3ijeBwxzi3detcfEV/hWuq/veDVIlltEUFiW2yBOcyK15H11qL8wnunoIj/1NwDVh09kl+mS4n/iu2yXKTPo/buqMUZw7sVwyNqIFnz+5QedTSeIUNyU5SfPN1agG8LtGWPPXrZxVvnUbgGvi20LaP6NIOcZU1tYcHju1Kel7Qu+OboBev+aOGs643SHKN1KfU1jIGojrLuy8wOVr9+5+K9G93F1pjs7ZDN9eZH/1Nka3vf3y0YHLU=
+   eJzFWAduwzAMZOrEjmMD/aKflqdGQk2AuHJYqz2AUGAtnjhEZSGiPclytrWyKK0mO/zW1mjRIZKZfrBSG17QbgrPSfRN9ButOtzpOt9WeHyR24vGAc95NF+2Ee+rrd9qRw81fG9JHoF8wRy0Ge+r+e1IZJ/2Yhn53kSfl4twHtpsU8b8JaxYljqt4vsE3zNkbOZ5D2e//+abwbaWdptF33y2lg8i393Zq4Qvx09a/41xkvEkOnJfat9yvDbWQ6kNMBd58X01F3L88Bnn8454eLnwyry051EyD/3Euu+9XMU22hW9o/tK5uASG/eOMZkjIq5yDPK7k+3bGVlvPuOS/K/5ZWlMaGt6Z4hcMyx7Mm8UiyPGuaZb7/rD48tcS/23F6xaJKotPHBssy0wh2nxOrLeWoVfWO8UFPafmntAq6NH8ot0KfFftl2Ui+R51N4dtThj+NBieEQNxGt+n9KjjsYzzODc5OUnS7cW4NsCbdljj152sdZ5Fq6BbwtpS68+jcBnWVNbaLD4bhTnJakLvjlaIN8g2v3RwlnWG6U5RupS6msYA3JvjAXtvozsoPXLdy7eu95drI2J3g7RXGu+9z9FtLb1/QO8Qxzb
   </data>
  </layer>
  <objectgroup name="Hitboxes" width="60" height="22">
@@ -27,7 +27,7 @@
   <object type="solid" x="320" y="830" width="316" height="128"/>
   <object type="solid" x="708" y="896" width="188" height="126"/>
   <object type="solid" x="6" y="1282" width="182" height="126"/>
-  <object x="320" y="1152" width="62" height="252"/>
+  <object type="solid" x="320" y="1152" width="62" height="252"/>
   <object type="solid" x="320" y="1216" width="192" height="190"/>
   <object type="solid" x="898" y="1216" width="250" height="188"/>
   <object type="solid" x="1026" y="1090" width="380" height="126"/>
@@ -70,21 +70,24 @@
   <object type="solid" x="320" y="258" width="639" height="124"/>
   <object type="solid" x="578" y="382" width="62" height="66"/>
   <object type="solid" x="706" y="384" width="62" height="188"/>
-  <object type="solid" x="260" y="446" width="124" height="68"/>
+  <object type="solid" x="130" y="447" width="253" height="65"/>
   <object type="solid" x="1858" y="1280" width="318" height="62"/>
   <object type="solid" x="2498" y="1156" width="318" height="190"/>
   <object type="solid" x="2812" y="1220" width="70" height="124"/>
   <object type="solid" x="2882" y="1282" width="60" height="66"/>
   <object type="solid" x="2626" y="1024" width="128" height="128"/>
-  <object x="2946" y="1026" width="254" height="62"/>
+  <object type="solid" x="2946" y="1026" width="254" height="62"/>
   <object type="solid" x="3330" y="1284" width="128" height="60"/>
   <object type="solid" x="3716" y="1284" width="106" height="118"/>
-  <object x="3328" y="960" width="192" height="62"/>
+  <object type="solid" x="3328" y="960" width="192" height="62"/>
   <object type="solid" x="3586" y="834" width="210" height="64"/>
-  <object x="3264" y="704" width="190" height="66"/>
+  <object type="solid" x="3264" y="704" width="190" height="66"/>
   <object type="solid" x="3260" y="64" width="80" height="64"/>
   <object type="solid" x="3328" y="64" width="448" height="254"/>
   <object type="solid" x="3458" y="314" width="320" height="74"/>
   <object type="solid" x="3520" y="382" width="254" height="64"/>
+  <object type="solid" x="2305" y="1217" width="62" height="126"/>
+  <object x="509" y="492" height="2"/>
+  <object type="solid" x="958" y="385" width="67" height="130"/>
  </objectgroup>
 </map>

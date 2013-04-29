@@ -38,7 +38,7 @@ int main()
 	GameState gameState = GameState::TitleScreen;
 
 	// Create the window
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "Dim Grotto");
 	//window.setVerticalSyncEnabled(true);
 
 	// Create a new view("Camera")
